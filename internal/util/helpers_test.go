@@ -4,12 +4,21 @@ import (
 	"testing"
 
 	"github.com/stretchr/testify/assert"
+	"github.com/stretchr/testify/require"
 )
 
 func TestSplitNext(t *testing.T) {
-	s := " a,b , c "
-	assert.Equal(t, "a", SplitNext(&s, ','))
-	assert.Equal(t, "b", SplitNext(&s, ','))
-	assert.Equal(t, "c", SplitNext(&s, ','))
-	assert.Empty(t, s)
+	const (
+		a  = "a"
+		b  = "b"
+		c  = "c"
+		sp = " "
+		cl = ","
+	)
+	s := sp + a + cl + b + sp + cl + sp + c + sp
+
+	for _, want := range []string{"a", "b", "c"} {
+		assert.Equal(t, want, SplitNext(&s, ','))
+	}
+	require.Empty(t, s)
 }

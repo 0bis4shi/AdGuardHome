@@ -8,17 +8,10 @@ import (
 )
 
 func TestSplitNext(t *testing.T) {
-	const (
-		a  = "a"
-		b  = "b"
-		c  = "c"
-		sp = " "
-		cl = ","
-	)
-	s := sp + a + cl + b + sp + cl + sp + c + sp
+	s := " a,b , c "
 
-	for _, want := range []string{"a", "b", "c"} {
-		assert.Equal(t, want, SplitNext(&s, ','))
-	}
+	assert.Equal(t, "a", SplitNext(&s, ','))
+	assert.Equal(t, "b", SplitNext(&s, ','))
+	assert.Equal(t, "c", SplitNext(&s, ','))
 	require.Empty(t, s)
 }

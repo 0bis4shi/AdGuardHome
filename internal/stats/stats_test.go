@@ -148,7 +148,7 @@ func TestStatsCollector(t *testing.T) {
 
 	t.Run("hours", func(t *testing.T) {
 		statsData := statsCollector(units, 0, Hours, ng)
-		require.Len(t, statsData, 720)
+		assert.Len(t, statsData, 720)
 	})
 
 	t.Run("days", func(t *testing.T) {

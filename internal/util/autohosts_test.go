@@ -114,10 +114,8 @@ func TestAutoHostsFSNotify(t *testing.T) {
 	ah.Start()
 	t.Cleanup(ah.Close)
 
-	t.Run("file_update", func(t *testing.T) {
-		assertWriting(t, f, "127.0.0.2   newhost\n")
-		assert.Nil(t, f.Sync())
-	})
+	assertWriting(t, f, "127.0.0.2   newhost\n")
+	require.Nil(t, f.Sync())
 
 	// Wait until fsnotify has triggerred and processed the
 	// file-modification event.

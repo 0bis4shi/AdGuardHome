@@ -113,7 +113,9 @@ func TestSetStaticIPdhcpcdConf(t *testing.T) {
 	}}
 
 	for _, tc := range testCases {
-		s := updateStaticIPdhcpcdConf("wlan0", "192.168.0.2/24", tc.routers, net.IP{192, 168, 0, 2})
-		assert.Equal(t, tc.dhcpcdConf, s)
+		t.Run(tc.name, func(t *testing.T) {
+			s := updateStaticIPdhcpcdConf("wlan0", "192.168.0.2/24", tc.routers, net.IP{192, 168, 0, 2})
+			assert.Equal(t, tc.dhcpcdConf, s)
+		})
 	}
 }
